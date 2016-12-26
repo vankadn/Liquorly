@@ -1,0 +1,33 @@
+﻿@model  IEnumerable<Liqourly.Models.Bottle>
+
+
+@{
+    ViewBag.Title = "Bottles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bottles</h2>
+
+@if (!Model.Any())
+{
+    <text>No bottles in stock</text>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Bottle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bottle in Model)
+            {
+                <tr>
+                    <td>@bottle.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

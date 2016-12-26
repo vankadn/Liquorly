@@ -8,5 +8,7 @@ namespace Liquorly.ViewModels
     {
         public Bottle Bottle { get; set; }
         public List<Customer> Customers { get; set; }
+
+        public List<Bottle> Bottles { get; set; }
     }
 }
