@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Vidly
+namespace Liqourly
 {
     public class BundleConfig
     {

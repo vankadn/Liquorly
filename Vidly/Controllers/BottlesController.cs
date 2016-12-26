@@ -1,24 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using Vidly.Models;
-using static System.String;
+using Liqourly.Models;
+using Liquorly.Models;
+using Liquorly.ViewModels;
 
-namespace Vidly.Controllers
+namespace Liquorly.Controllers
 {
     public class BottlesController : Controller
     {
         // GET: Movies
         public ActionResult Random()
         {
-            var movie = new Bottle() {Name = "Chivas Regal"};
+            var bottle = new Bottle() {Name = "Chivas Regal"};
 
-            //            return View(movie);
-            //            return Content("Doood");
-            //            return HttpNotFound();
-            //            return new EmptyResult();
-            return RedirectToAction("Index", "Home", new {page=1, sortBy = "name"});
+            var customerList = new List<Customer>()
+            {
+                new Customer() {Name = "Customer 1" },
+                new Customer() {Name = "Customer 2"}
+            };
+            var viewModel = new RandomBottleViewModel
+            {
+               Bottle = bottle,
+               Customers = customerList
+            };
+            return View(viewModel);
         }
 
         public ActionResult Edit(int id)
@@ -32,11 +38,18 @@ namespace Vidly.Controllers
             {
                 pageIndex = 1;
             }
-            if (IsNullOrWhiteSpace(sortBy))
+            if (String.IsNullOrWhiteSpace(sortBy))
             {
                 sortBy = "Name";
             }
             return Content($"pageIndex={pageIndex}& sortBy={sortBy}");
+        }
+
+        [Route("bottles/manufactured/{year}")]
+        [Route("bottles/manufactured/{year}/{month?}")]
+        public ActionResult ByManufacturedDate(int year , int? month)
+        {
+            return Content($"{year}/{month}");
         }
     }
 }   

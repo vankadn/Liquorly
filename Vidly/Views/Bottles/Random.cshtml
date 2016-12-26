@@ -1,9 +1,27 @@
-﻿@model  Vidly.Models.Bottle
+﻿@model  Liquorly.ViewModels.RandomBottleViewModel
 
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    var className = Model.Customers.Count > 1 ? "popular" : null;
+}
 
-<h2>@Model.Name</h2>
+<h2 class="popular">@Model.Bottle.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <text>No one has bought this bottle before</text>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
+
 

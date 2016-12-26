@@ -1,6 +1,6 @@
-﻿namespace Liqourly.Models
+﻿namespace Liquorly.Models
 {
-    public class Bottle
+    public class Customer
     {
         public int Id { get; set; }
         public string Name { get; set; }
